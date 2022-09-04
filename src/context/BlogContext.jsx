@@ -1,7 +1,6 @@
 import {createContext,useReducer} from 'react';
 import { blogReducer } from './BlogReducer';
 
-
 const BLOGS = [
     {
       id: '1',
