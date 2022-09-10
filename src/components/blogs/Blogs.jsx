@@ -1,8 +1,10 @@
 import React,{useContext} from 'react'
 import styles from './Blogs.module.css'
 import BlogsContext from '../../context/BlogContext';
+import useAuth from '../../context/AuthContext';
 
 const Blogs = () => {
+   const auth = useAuth();
   const {blogs,blogDispatch} =  useContext(BlogsContext);
 
   return (
@@ -16,11 +18,15 @@ const Blogs = () => {
                 <p className={styles.blogDescription}>
                    {blog.description}
                 </p>
-                <button className={styles.blogDelete}
-                  onClick={()=>{
-                     blogDispatch({type:"BLOG_DELETE",payload:blog})
-                  }}
-                >Delete</button>
+                {
+                  auth.user && (
+                    <button className={styles.blogDelete}
+                    onClick={()=>{
+                       blogDispatch({type:"BLOG_DELETE",payload:blog})
+                    }}
+                  >Delete</button>
+                  )
+                }
             </div>
               ))
             }

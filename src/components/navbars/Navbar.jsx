@@ -1,7 +1,9 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import styles from './Navbar.module.css'
+import styles from './Navbar.module.css';
+import useAuth from '../../context/AuthContext';
 const Navbar = () => {
+     const auth = useAuth();
   return (
     <div className={styles.container}>
        <div className={styles.wrapper}>
@@ -16,9 +18,11 @@ const Navbar = () => {
        <NavLink to="/create">
             Create
        </NavLink>
-       <NavLink to="/blog-site-login">
-            Login
-       </NavLink>
+       {
+           auth.user ? <button onClick={()=>auth.logout()} >logout</button> :     <NavLink to="/blog-site-login">
+           Login
+      </NavLink>
+       }
 
         </nav>
        </div>

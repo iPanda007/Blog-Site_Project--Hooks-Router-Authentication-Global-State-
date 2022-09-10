@@ -1,8 +1,10 @@
     import React,{useState} from 'react'
     import styles from './Login.module.css'
-    import useAuth from '../../context/AuthContext'
+    import useAuth from '../../context/AuthContext';
+    import { useNavigate } from 'react-router-dom';
     const Login = () => {
-      const [user,setUser] = useState({username:"",password:""})
+      const [user,setUser] = useState({username:"",password:""});
+      const navigate =useNavigate()
       const auth = useAuth();
 
       //Function
@@ -13,6 +15,8 @@
      const handleSubmit = (e)=>{
       e.preventDefault();
         auth.login(user)
+        console.log(user)
+        navigate('/')
      }
       return (
         <div className={styles.container}>
@@ -32,7 +36,9 @@
                         <input type="password"
                          onChange={handleChange}
                         value={user.password} name="password" placeholder="Password" className={styles.loginInput}/>
-                        <button className={styles.loginButton}>Login</button>
+                        <button className={styles.loginButton}
+                        
+                        >Login</button>
                 </form>
             </div>
         </div>

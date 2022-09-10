@@ -5,6 +5,7 @@ import About from './pages/about/About'
 import Login from './pages/auth/Login'
 import Create from './pages/createblog/Create'
 import Home from './pages/home/Home'
+import ProtectedRoute from './ProtectedRoute'
 
 
 const App = () => {
@@ -13,7 +14,9 @@ const App = () => {
          <Navbar/>
            <Routes>
                 <Route path='blog-site-login' element={<Login/>}/>
-                <Route path='create' element={<Create/>}/>
+                <Route path='create' element={<ProtectedRoute>
+                  <Create/>
+                </ProtectedRoute>}/>
                 <Route path='about' element={<About/>}/>
                 <Route path="/" element={<Home/>}/>
            </Routes>
